@@ -9,6 +9,17 @@
 #include <dt-bindings/zmk/keys.h>
 
 / {
+    behaviors {
+        new_behavior: new_behavior {
+            compatible = "zmk,behavior-hold-tap";
+            label = "NEW_BEHAVIOR";
+            bindings = <&none>, <&none>;
+
+            #binding-cells = <2>;
+            tapping-term-ms = <(-2)>;
+        };
+    };
+
     keymap {
         compatible = "zmk,keymap";
 
@@ -73,6 +84,20 @@
 &trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans
                         &trans  &trans  &trans    &trans  &trans  &trans
             >;
+        };
+    };
+
+    conditional_layers {
+        compatible = "zmk,conditional-layers";
+
+        testcond {
+            if-layers = <1>;
+            then-layer = <4>;
+        };
+
+        testcond2 {
+            if-layers = <3>;
+            then-layer = <4>;
         };
     };
 };
